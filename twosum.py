@@ -4,6 +4,7 @@ class Solution:
 
         for i in range(len(nums)): 
             complement = target - nums[i]
+            
 
             if complement in keyDict.keys():
                 return [i, keyDict[complement]]
