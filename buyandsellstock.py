@@ -28,3 +28,7 @@ prices = [7, 6, 4, 3, 1]
 solution = Solution()
 
 print(solution.maxProfit(prices))
+
+#Time Complexity = O(n)
+
+#Space Complexity = O(1)
