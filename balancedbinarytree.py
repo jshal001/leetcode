@@ -44,6 +44,7 @@ node2 = TreeNode(2, None, TreeNode(5,None, TreeNode(6)))
 root = TreeNode(3, node1, node2)
 
 print(solution.isBalanced(root))
+print(node1)
 
 #Time Complexity: O(n)
 #Space Complexity: O(h) - call stack
