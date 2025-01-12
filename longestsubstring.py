@@ -1,20 +1,23 @@
+from collections import deque
+
 def lengthOfLongestSubstring(s):
     l = 0
+    window = deque()
 
-    longestLength = 0
+    longest_substr = ""
+    windowSize = 0
 
-    window = set()
+    while l < len(s):
+        while s[l] in window:
+            window.popleft()
+        if len(window) > windowSize:
+            windowSize = len(window)
+            longest_substr = window
+        
+        l += 1
+        
+        return 
 
-    for r in range(len(s)):
-        while s[r] in window: 
-            window.remove(s[l])
-            l += 1
     
-        window.add(s[r])
-        longestLength = max(longestLength, r - l + 1)
-    print(window)
-    return longestLength
 
-example = "abacsdfalskdjfasldkjf"
-
-print(lengthOfLongestSubstring(example))
+    
