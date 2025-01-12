@@ -4,39 +4,22 @@ class TreeNode():
         self.val = val
         self.left = left
         self.right = right
+
 class Solution():
-    def traverseTree(self, root):
-        #base case, if reaches end, return -1 and true 
-        if root == None:
-            return -1, True
-        
-        #ask left subtree for height and isbalanced? 
-        [leftHeight, isBalanced] = self.traverseTree(root.left)
-        #check if balanced, if not, bubble up false
-        if not isBalanced:
-            return -1, False
-        
-        [rightHeight, isBalanced] = self.traverseTree(root.right)
-        if not isBalanced:
-            return -1, False
-        
-        #now that we've retrieved both left and right height, do calculation
-        if(abs(leftHeight - rightHeight) > 1):
-            return -1, False
-        else: 
-            return max(leftHeight, rightHeight) + 1, True
-
-
-            
-      
     def isBalanced(self, root):
-        """
-        :type root: TreeNode
-        :rtype: bool
-        """
-        [height, isBalanced] = self.traverseTree(root)
+        return (self.Height(root) >= 0)
+    
+    def Height(self, root):
+        if root is None:
+            return 0
+        
+        [leftheight, rightheight] = self.Height(root.left), self.Height(root.right)
 
-        return isBalanced
+        if leftheight < 0 or rightheight < 0 or abs(leftheight - rightheight) > 1:
+            return -1
+        
+        return max(leftheight, rightheight) + 1  
+    
         
 solution = Solution()
 node1 = TreeNode(1)
@@ -45,6 +28,3 @@ root = TreeNode(3, node1, node2)
 
 print(solution.isBalanced(root))
 print(node1)
-
-#Time Complexity: O(n)
-#Space Complexity: O(h) - call stack

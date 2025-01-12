@@ -24,18 +24,15 @@ class Solution:
         list2Iter = list2
 
         while(list1Iter and list2Iter): 
-            if(list1Iter.val < list2Iter.val):
+            if(list1Iter.val <= list2Iter.val):
                 temp.next = list1Iter
                 list1Iter = list1Iter.next
                 temp = temp.next
-            elif(list1Iter.val > list2Iter.val):
+            else:
                 temp.next = list2Iter
                 list2Iter = list2Iter.next
                 temp = temp.next
-            else: 
-                temp.next = list1Iter
-                list1Iter = list1Iter.next
-                temp = temp.next
+
         #now that one of the lists have been exhausted 
         if(list1Iter): 
             temp.next = list1Iter

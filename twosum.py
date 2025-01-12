@@ -1,15 +1,18 @@
-class Solution: 
-    def twoSum(self, nums, target): 
-        keyDict = {}
 
-        for i in range(len(nums)): 
-            complement = target - nums[i]
+def twoSum(nums, target): 
+    keyDict = {}
+
+    for i in range(len(nums)): 
+        complement = target - nums[i]
 
 
-            if complement in keyDict.keys():
-                return [i, keyDict[complement]]
-            keyDict[nums[i]] = i
+        if complement in keyDict.keys():
+            return [keyDict[complement], i]
+        keyDict[nums[i]] = i
 
-#Time Complexity: O(n)
+nums = [2, 7, 11, 15]
+target = 9
 
-#Space Complexity: O(n) 
+print(twoSum(nums, target))
+
+
