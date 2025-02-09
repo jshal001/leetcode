@@ -1,24 +1,32 @@
 # Definition for a binary tree node.
-class TreeNode():
+class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
-class Solution():
+class Solution:
     def isBalanced(self, root):
-        return (self.Height(root) >= 0)
-    
-    def Height(self, root):
-        if root is None:
-            return 0
-        
-        [leftheight, rightheight] = self.Height(root.left), self.Height(root.right)
+        if root == None:
+            return True
+        leftH = self.getHeight(root.left)
+        rightH = self.getHeight(root.right)
+        if leftH == -1 or rightH == -1:
+            return False
+        else: 
+            return abs(leftH - rightH) <= 1
+         
 
-        if leftheight < 0 or rightheight < 0 or abs(leftheight - rightheight) > 1:
-            return -1
         
-        return max(leftheight, rightheight) + 1  
+    def getHeight(self, currNode): 
+        if(currNode == None):
+            return 0
+        leftH, rightH = self.getHeight(currNode.left), self.getHeight(currNode.right)
+        if(abs(leftH - rightH) > 1 or leftH == -1 or rightH == -1):
+            return -1
+
+        return max(leftH, rightH) + 1 
+    
     
         
 solution = Solution()
@@ -27,4 +35,4 @@ node2 = TreeNode(2, None, TreeNode(5,None, TreeNode(6)))
 root = TreeNode(3, node1, node2)
 
 print(solution.isBalanced(root))
-print(node1)
+
